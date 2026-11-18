@@ -1,0 +1,22 @@
+digraph process {
+  graph [rankdir=TB, fontname="Liberation Sans", fontsize=14, nodesep=0.5, ranksep=0.45, pad=0.2];
+  node  [fontname="Liberation Sans", fontsize=13, shape=box, style="rounded,filled", fillcolor="#ffffff", color="#1f4d3a", penwidth=1.4, margin="0.18,0.08"];
+  edge  [fontname="Liberation Sans", fontsize=11, color="#555555", arrowsize=0.8];
+
+  start [label="Сотрудник подаёт заявку:\nдата, время, маршрут, цель, пассажиры", fillcolor="#e7efe9"];
+  check [label="Модуль проверяет заявку\n(время не прошло, не дольше 12 ч,\nзаявитель работает)"];
+  newr  [label="Заявка «новая»"];
+  pick  [label="Диспетчер подбирает автомобиль:\nисправен, хватает мест, свободен"];
+  assigned [label="«Автомобиль назначен»"];
+  go    [label="Водитель выезжает —\nдиспетчер отмечает выезд («в пути»)"];
+  done  [label="Поездка завершена — «выполнена»", fillcolor="#e7efe9"];
+  reject [label="«Отклонена»\n(с причиной)", fillcolor="#f8e1df", color="#a3322a"];
+  cancel [label="«Отменена»\n(с причиной)", fillcolor="#eeeeee", color="#777777"];
+
+  start -> check -> newr -> pick -> assigned -> go -> done;
+  newr -> reject [label="  нет служебной\n  необходимости"];
+  assigned -> cancel [label="  поездка\n  не нужна"];
+  check -> start [label="ошибка ввода —\nисправить", style=dashed, constraint=false];
+  {rank=same; newr; reject}
+  {rank=same; assigned; cancel}
+}

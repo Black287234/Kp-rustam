@@ -35,7 +35,7 @@
                 {
                     var left = Pos(t.StartsAt); var width = Math.Max(Pos(t.EndsAt) - left, 2);
                     <a class="slot @t.Status.Css()" href="/Trips/Card/@t.Id" style="left:@left.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%;width:@width.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%"
-                       title="@t.Number, @t.StartsAt.ToString("HH:mm")–@t.EndsAt.ToString("HH:mm"): @t.Destination">@t.StartsAt.ToString("HH:mm")–@t.EndsAt.ToString("HH:mm") @t.Number</a>
+                       title="@t.Number, @t.StartsAt.ToString("HH:mm")–@t.EndsAt.ToString("HH:mm"): @t.Destination">@t.Number</a>
                 }
                 @if (DateOnly.FromDateTime(now) == day && now.Hour >= firstHour && now.Hour < lastHour)
                 {

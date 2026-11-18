@@ -1,0 +1,18 @@
+digraph usecases {
+  graph [rankdir=LR, fontname="Liberation Sans", nodesep=0.3, ranksep=1.1, pad=0.2];
+  node  [fontname="Liberation Sans", fontsize=13];
+  edge  [arrowhead=none, color="#555555"];
+
+  emp  [label="Сотрудник", shape=box, style="rounded,filled", fillcolor="#e7efe9", color="#1f4d3a"];
+  disp [label="Диспетчер\nавтопарка", shape=box, style="rounded,filled", fillcolor="#e7efe9", color="#1f4d3a"];
+
+  subgraph cluster_m {
+    label="Модуль заявок на служебный транспорт"; fontsize=13; color="#bbbbbb"; style=rounded;
+    node [shape=ellipse, style=filled, fillcolor="#fffdf8", color="#1f4d3a"];
+    u1 [label="Подать заявку"]; u2 [label="Изменить новую заявку"]; u3 [label="Найти заявку"];
+    u4 [label="Назначить автомобиль"]; u5 [label="Проверить занятость"]; u6 [label="Сменить статус"];
+    u7 [label="Вести справочник\nавтомобилей"]; u8 [label="Вести справочник\nсотрудников"];
+  }
+  emp -> u1; emp -> u2; emp -> u3;
+  disp -> u3; disp -> u4; disp -> u5; disp -> u6; disp -> u7; disp -> u8;
+}

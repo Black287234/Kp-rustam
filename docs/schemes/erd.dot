@@ -1,0 +1,31 @@
+digraph erd {
+  graph [rankdir=LR, fontname="Liberation Sans", nodesep=0.6, ranksep=1.0, pad=0.2];
+  node  [shape=plaintext, fontname="Liberation Sans", fontsize=12];
+  edge  [fontname="Liberation Sans", fontsize=11, color="#1f4d3a", arrowhead=crow, arrowtail=tee, dir=both, penwidth=1.3];
+
+  employee [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="4" color="#1f4d3a">
+    <tr><td bgcolor="#1f4d3a"><font color="white"><b>employee</b> (сотрудник)</font></td></tr>
+    <tr><td align="left"><u>id</u></td></tr><tr><td align="left">personnel_no (уник.)</td></tr>
+    <tr><td align="left">full_name</td></tr><tr><td align="left">department</td></tr>
+    <tr><td align="left">position</td></tr><tr><td align="left">phone</td></tr><tr><td align="left">is_active</td></tr></table>>];
+  car [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="4" color="#1f4d3a">
+    <tr><td bgcolor="#1f4d3a"><font color="white"><b>car</b> (автомобиль)</font></td></tr>
+    <tr><td align="left"><u>id</u></td></tr><tr><td align="left">plate (уник.)</td></tr>
+    <tr><td align="left">make, model</td></tr><tr><td align="left">kind</td></tr>
+    <tr><td align="left">passenger_seats</td></tr><tr><td align="left">release_year</td></tr><tr><td align="left">state</td></tr></table>>];
+  trip [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="4" color="#1f4d3a">
+    <tr><td bgcolor="#1f4d3a"><font color="white"><b>trip_request</b> (заявка)</font></td></tr>
+    <tr><td align="left"><u>id</u></td></tr><tr><td align="left">requester_id → employee</td></tr>
+    <tr><td align="left">starts_at, ends_at</td></tr><tr><td align="left">origin, destination</td></tr>
+    <tr><td align="left">purpose, passengers</td></tr><tr><td align="left">status</td></tr>
+    <tr><td align="left">car_id → car (может быть пусто)</td></tr><tr><td align="left">resolution, created_at</td></tr></table>>];
+  log [label=<<table border="1" cellborder="0" cellspacing="0" cellpadding="4" color="#1f4d3a">
+    <tr><td bgcolor="#1f4d3a"><font color="white"><b>trip_log</b> (журнал)</font></td></tr>
+    <tr><td align="left"><u>id</u></td></tr><tr><td align="left">request_id → trip_request</td></tr>
+    <tr><td align="left">logged_at</td></tr><tr><td align="left">status</td></tr><tr><td align="left">message</td></tr></table>>];
+
+  employee -> trip [label="подаёт\n1 : N"];
+  car -> trip [label="назначен\n1 : N"];
+  trip -> log [label="1 : N"];
+  {rank=same; employee; car}
+}

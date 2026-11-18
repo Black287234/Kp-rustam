@@ -1,0 +1,23 @@
+digraph states {
+  graph [rankdir=LR, fontname="Liberation Sans", nodesep=0.6, ranksep=0.9, pad=0.2];
+  node  [fontname="Liberation Sans", fontsize=13, shape=box, style="rounded,filled", fillcolor="#ffffff", color="#1f4d3a", penwidth=1.4];
+  edge  [fontname="Liberation Sans", fontsize=11, color="#444444"];
+
+  s0 [shape=circle, label="", width=0.22, style=filled, fillcolor="#1f4d3a"];
+  n [label="Новая", fillcolor="#e4ecf7"];
+  a [label="Автомобиль\nназначен", fillcolor="#fbefd9"];
+  r [label="В пути", fillcolor="#e3f0e6"];
+  d [label="Выполнена", fillcolor="#ebe8e0"];
+  j [label="Отклонена", fillcolor="#f8e1df"];
+  c [label="Отменена", fillcolor="#eeeeee"];
+
+  s0 -> n [label="подача"];
+  n -> a [label="назначить\nавтомобиль"];
+  a -> n [label="снять\nавтомобиль"];
+  a -> r [label="выезд"];
+  r -> d [label="завершить"];
+  n -> j [label="отклонить"];
+  n -> c [label="отменить"];
+  a -> c [label="отменить"];
+  {rank=same; j; c}
+}

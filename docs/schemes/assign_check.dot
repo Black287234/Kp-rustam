@@ -1,0 +1,26 @@
+digraph assign_check {
+  graph [rankdir=TB, fontname="Liberation Sans", nodesep=0.6, ranksep=0.32, pad=0.2, splines=ortho];
+  node  [fontname="Liberation Sans", fontsize=12, color="#1f4d3a", penwidth=1.3];
+  edge  [fontname="Liberation Sans", fontsize=11, color="#444444"];
+
+  b  [label="Начало: диспетчер выбрал автомобиль", shape=box, style=rounded];
+  q1 [label="Заявка «новая»?", shape=diamond];
+  q2 [label="Поездка ещё\nне закончилась?", shape=diamond];
+  q3 [label="Автомобиль\n«в строю»?", shape=diamond];
+  q4 [label="Мест хватает\nна всех?", shape=diamond];
+  q5 [label="Автомобиль свободен\nв это время?", shape=diamond];
+  ok [label="Сохранить назначение:\nстатус «автомобиль назначен»,\nзапись в журнале", shape=box];
+  e  [label="Конец", shape=box, style=rounded];
+
+  node [shape=box, color="#a3322a", fontcolor="#7a241e"];
+  n1 [label="Отказ: действие недоступно\nв текущем статусе"];
+  n2 [label="Отказ: время поездки прошло"];
+  n3 [label="Отказ: автомобиль\nна ремонте или списан"];
+  n4 [label="Отказ: мест меньше,\nчем пассажиров"];
+  n5 [label="Отказ: автомобиль занят,\nуказан номер мешающей заявки"];
+
+  b -> q1;
+  q1 -> q2 [xlabel="да "]; q2 -> q3 [xlabel="да "]; q3 -> q4 [xlabel="да "]; q4 -> q5 [xlabel="да "]; q5 -> ok [xlabel="да "]; ok -> e;
+  q1 -> n1 [label="нет"]; q2 -> n2 [label="нет"]; q3 -> n3 [label="нет"]; q4 -> n4 [label="нет"]; q5 -> n5 [label="нет"];
+  {rank=same; q1; n1} {rank=same; q2; n2} {rank=same; q3; n3} {rank=same; q4; n4} {rank=same; q5; n5}
+}

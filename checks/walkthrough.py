@@ -153,7 +153,7 @@ def c06(page):
 
 @check("С07", "Справочники", "Нечисловое значение в числовом поле",
        "мест: «abc», год: пусто", "Добавить автомобиль → заполнить → Сохранить",
-       "сообщения на русском: «Введите число…»")
+       "сообщения у полей на русском языке, без английского текста; автомобиль не сохранён")
 def c07(page):
     page.goto(f"{BASE}/Cars/Create")
     fill_car(page, "М555ММ 86", "UAZ", "Patriot", "Sedan", 4, 2020)
@@ -507,7 +507,7 @@ def main():
         SETTINGS["restart"] = restart
 
     with sync_playwright() as p:
-        browser = p.chromium.launch()
+        browser = p.chromium.launch(args=["--lang=ru-RU"])
         page = browser.new_page(viewport={"width": 1280, "height": 860}, locale="ru-RU")
         for fn in CHECKS:
             m = fn.meta

@@ -1,0 +1,19 @@
+digraph layers {
+  graph [rankdir=TB, fontname="Liberation Sans", nodesep=0.35, ranksep=0.55, pad=0.2, compound=true];
+  node  [fontname="Liberation Sans", fontsize=12, shape=box, style="rounded,filled", fillcolor="#ffffff", color="#1f4d3a"];
+  edge  [color="#555555", arrowsize=0.8];
+
+  browser [label="Браузер: страницы MVC и запросы HTMX", fillcolor="#e7efe9"];
+  subgraph cluster_web { label="Обработка запросов (Controllers, Views, Models)"; fontsize=12; style=rounded; color="#999999";
+    c5 [label="API: /api/…"]; c4 [label="BoardController"]; c3 [label="EmployeesController"]; c2 [label="CarsController"]; c1 [label="TripsController"]; }
+  subgraph cluster_logic { label="Предметная логика (Dispatch, Domain)"; fontsize=12; style=rounded; color="#999999";
+    l5 [label="TripLifecycle, Period,\nPlateNumber"]; l4 [label="FleetGuard\nизменение автомобиля"]; l3 [label="CarAvailability\nзанятость"]; l2 [label="DispatchDesk\nназначение, статусы"]; l1 [label="RequestDesk\nприём заявок"]; }
+  subgraph cluster_data { label="Доступ к данным (Data)"; fontsize=12; style=rounded; color="#999999";
+    d4 [label="SchemaMigrator\n+ SQL-скрипты"]; d3 [label="EmployeeStore"]; d2 [label="CarStore"]; d1 [label="TripStore"]; }
+  db [label="SQLite: App_Data/transport.db", shape=cylinder, fillcolor="#f6f3ea"];
+
+  browser -> c1 [lhead=cluster_web];
+  c3 -> l3 [ltail=cluster_web, lhead=cluster_logic];
+  l3 -> d2 [ltail=cluster_logic, lhead=cluster_data];
+  d2 -> db [ltail=cluster_data];
+}
