@@ -28,5 +28,10 @@ public sealed class TripRequest
 
     public DateTime CreatedAt { get; set; }
 
+    /// <summary>Причина отклонения или отмены.</summary>
+    public string? Resolution { get; set; }
+
     public string Route => $"{Origin} → {Destination}";
+
+    public Period Period => new(StartsAt, EndsAt);
 }

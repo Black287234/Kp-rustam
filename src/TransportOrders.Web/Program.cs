@@ -9,7 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 // Кириллица выводится в разметку как есть, без замены на числовые ссылки
 builder.Services.Configure<WebEncoderOptions>(o =>
-    o.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.BasicLatin, UnicodeRanges.Latin1Supplement, UnicodeRanges.Cyrillic, UnicodeRanges.GeneralPunctuation, UnicodeRanges.Arrows));
+    o.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.BasicLatin, UnicodeRanges.Latin1Supplement, UnicodeRanges.LatinExtendedA, UnicodeRanges.Cyrillic, UnicodeRanges.GeneralPunctuation, UnicodeRanges.Arrows));
 
 // База SQLite: файл App_Data/transport.db рядом с приложением
 var dataFolder = Path.Combine(builder.Environment.ContentRootPath, "App_Data");
@@ -25,6 +25,8 @@ builder.Services.AddScoped<CarStore>();
 builder.Services.AddScoped<EmployeeStore>();
 builder.Services.AddScoped<TripStore>();
 builder.Services.AddScoped<RequestDesk>();
+builder.Services.AddScoped<CarAvailability>();
+builder.Services.AddScoped<DispatchDesk>();
 
 var app = builder.Build();
 

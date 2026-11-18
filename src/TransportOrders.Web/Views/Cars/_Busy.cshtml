@@ -1,0 +1,22 @@
+@model BusyAnswer
+@if (Model.Problem is not null)
+{
+    <p class="flash bad">@Model.Problem</p>
+}
+else if (Model.Car.State != CarState.Operational)
+{
+    <p class="flash bad">Автомобиль @Model.Car.State.Text() — назначать его нельзя.</p>
+}
+else if (Model.Conflicts.Count == 0)
+{
+    <p class="flash ok">Свободен: @Model.Period</p>
+}
+else
+{
+    <div class="flash bad">
+        Занят: @Model.Period
+        <ul>
+            @foreach (var t in Model.Conflicts) { <li><a href="/Trips/Card/@t.Id">@t.Number</a> @t.StartsAt.ToString("HH:mm")–@t.EndsAt.ToString("HH:mm"), @t.Destination</li> }
+        </ul>
+    </div>
+}

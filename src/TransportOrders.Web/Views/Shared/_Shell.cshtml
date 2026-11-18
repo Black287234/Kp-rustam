@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewData["Title"] — служебный транспорт</title>
     <link rel="stylesheet" href="~/css/depot.css" asp-append-version="true" />
+    <script src="~/lib/htmx/htmx.min.js" defer></script>
 </head>
 <body>
 <header class="topbar">
@@ -14,6 +15,7 @@
     </a>
     <nav class="mainnav">
         <a asp-controller="Trips" asp-action="Index">Заявки</a>
+        <a asp-controller="Board" asp-action="Index">Занятость</a>
         <a asp-controller="Cars" asp-action="Index">Автомобили</a>
         <a asp-controller="Employees" asp-action="Index">Сотрудники</a>
     </nav>

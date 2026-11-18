@@ -1,0 +1,48 @@
+@model IReadOnlyList<TransportOrders.Web.Dispatch.BoardLine>
+@{
+    var day = (DateOnly)ViewData["day"]!;
+    var now = (DateTime)ViewData["now"]!;
+    ViewData["Title"] = "Занятость автомобилей";
+    const int firstHour = 7, lastHour = 21;
+    double Pos(DateTime t)
+    {
+        var h = t.Date < day.ToDateTime(TimeOnly.MinValue) ? firstHour
+              : t.Date > day.ToDateTime(TimeOnly.MinValue) ? lastHour
+              : Math.Clamp(t.Hour + t.Minute / 60.0, firstHour, lastHour);
+        return (h - firstHour) * 100.0 / (lastHour - firstHour);
+    }
+}
+<div class="head">
+    <h1>Занятость автомобилей на @day.ToString("dd.MM.yyyy")</h1>
+    <form method="get" class="filters tight">
+        <a class="btn light" href="/Board?day=@day.AddDays(-1).ToString("yyyy-MM-dd")">←</a>
+        <input type="date" name="day" value="@day.ToString("yyyy-MM-dd")" onchange="this.form.submit()" aria-label="Дата" />
+        <a class="btn light" href="/Board?day=@day.AddDays(1).ToString("yyyy-MM-dd")">→</a>
+    </form>
+</div>
+<div class="board">
+    <div class="board-hours">
+        <span></span>
+        <div class="scale">@for (var h = firstHour; h < lastHour; h++) { <span>@h:00</span> }</div>
+    </div>
+    @foreach (var line in Model)
+    {
+        <div class="board-line @(line.Car.State == CarState.InRepair ? "repair" : "")">
+            <a class="board-car" href="/Cars/Card/@line.Car.Id"><span class="plate">@line.Car.Plate</span><small>@line.Car.Title, @line.Car.PassengerSeats м.</small></a>
+            <div class="track">
+                @if (line.Car.State == CarState.InRepair) { <span class="repair-note">на ремонте</span> }
+                @foreach (var t in line.Trips)
+                {
+                    var left = Pos(t.StartsAt); var width = Math.Max(Pos(t.EndsAt) - left, 2);
+                    <a class="slot @t.Status.Css()" href="/Trips/Card/@t.Id" style="left:@left.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%;width:@width.ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%"
+                       title="@t.Number, @t.StartsAt.ToString("HH:mm")–@t.EndsAt.ToString("HH:mm"): @t.Destination">@t.StartsAt.ToString("HH:mm")–@t.EndsAt.ToString("HH:mm") @t.Number</a>
+                }
+                @if (DateOnly.FromDateTime(now) == day && now.Hour >= firstHour && now.Hour < lastHour)
+                {
+                    <span class="now" style="left:@Pos(now).ToString("0.##", System.Globalization.CultureInfo.InvariantCulture)%"></span>
+                }
+            </div>
+        </div>
+    }
+</div>
+<p class="small muted">Показаны поездки с назначенным автомобилем: назначенные, в пути и выполненные. Шкала — с @(firstHour):00 до @(lastHour):00.</p>

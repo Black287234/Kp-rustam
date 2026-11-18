@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Mvc;
 using TransportOrders.Web.Data;
+using TransportOrders.Web.Dispatch;
 using TransportOrders.Web.Domain;
 using TransportOrders.Web.Models;
 
 namespace TransportOrders.Web.Controllers;
 
 /// <summary>Справочник автомобилей: список, карточка, добавление и изменение.</summary>
-public sealed class CarsController(CarStore cars) : Controller
+public sealed class CarsController(CarStore cars, CarAvailability availability, TimeProvider clock) : Controller
 {
     public IActionResult Index(string? q, CarState? state)
     {
@@ -18,7 +19,20 @@ public sealed class CarsController(CarStore cars) : Controller
     public IActionResult Card(int id)
     {
         var car = cars.Find(id);
-        return car is null ? NotFound() : View(car);
+        if (car is null) return NotFound();
+        ViewData["commitments"] = availability.Commitments(id, clock.GetLocalNow().DateTime);
+        return View(car);
+    }
+
+    /// <summary>Проверка занятости автомобиля на дату и время (ответ — фрагмент страницы для HTMX).</summary>
+    public IActionResult Busy(int id, DateOnly? day, TimeOnly? from, TimeOnly? to)
+    {
+        var car = cars.Find(id);
+        if (car is null) return NotFound();
+        if (day is null || from is null || to is null || to <= from)
+            return PartialView("_Busy", new BusyAnswer(car, null, [], "Укажите дату и время: окончание позже начала"));
+        var period = new Domain.Period(day.Value.ToDateTime(from.Value), day.Value.ToDateTime(to.Value));
+        return PartialView("_Busy", new BusyAnswer(car, period, availability.Conflicts(id, period), null));
     }
 
     [HttpGet]
@@ -50,6 +64,12 @@ public sealed class CarsController(CarStore cars) : Controller
         form.Id = id;
         if (ModelState.IsValid && cars.PlateTaken(form.NormalizedPlate, id))
             ModelState.AddModelError(nameof(form.Plate), $"Автомобиль с госномером {form.NormalizedPlate} уже есть в справочнике");
+        // Нельзя отправить в ремонт или списать автомобиль, за которым закреплены предстоящие поездки
+        if (ModelState.IsValid && form.State != CarState.Operational
+            && availability.Commitments(id, clock.GetLocalNow().DateTime) is { Count: > 0 } held)
+            ModelState.AddModelError(nameof(form.State),
+                $"За автомобилем закреплены поездки: {string.Join(", ", held.Select(t => $"{t.Number} ({t.StartsAt:dd.MM HH:mm})"))}. " +
+                "Сначала снимите автомобиль с этих заявок или назначьте другой");
         if (!ModelState.IsValid) return View("Form", form);
 
         cars.Update(form.ToCar());

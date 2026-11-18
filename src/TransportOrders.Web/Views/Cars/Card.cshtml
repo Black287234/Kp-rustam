@@ -1,13 +1,44 @@
 @model Car
-@{ ViewData["Title"] = Model.Plate; }
+@{ ViewData["Title"] = Model.Plate; var held = (IReadOnlyList<TripRequest>)ViewData["commitments"]!; }
 <p><a asp-action="Index">← к автопарку</a></p>
 <div class="head">
     <h1><span class="plate">@Model.Plate</span> @Model.Title</h1>
     <a class="btn light" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a>
 </div>
+<div class="split">
+<div>
 <dl class="facts">
     <dt>Тип</dt><dd>@Model.Kind.Text()</dd>
     <dt>Пассажирских мест</dt><dd>@Model.PassengerSeats</dd>
     <dt>Год выпуска</dt><dd>@Model.ReleaseYear</dd>
     <dt>Состояние</dt><dd><span class="tag tag-@Model.State.ToString().ToLowerInvariant()">@Model.State.Text()</span></dd>
 </dl>
+<h2>Закреплённые поездки</h2>
+@if (held.Count == 0)
+{
+    <p class="muted">Предстоящих поездок нет.</p>
+}
+else
+{
+    <ul class="plain">
+        @foreach (var t in held)
+        {
+            <li><a href="/Trips/Card/@t.Id">@t.Number</a> — @t.Period, @t.Destination <span class="status @t.Status.Css()">@t.Status.Text()</span></li>
+        }
+    </ul>
+}
+<p><a href="/Trips?CarId=@Model.Id">Все заявки этого автомобиля</a></p>
+</div>
+<aside class="panel">
+    <h2>Свободен ли автомобиль?</h2>
+    <form hx-get="/Cars/Busy/@Model.Id" hx-target="#busy" class="form compact">
+        <label>Дата <input type="date" name="day" value="@DateTime.Today.AddDays(1).ToString("yyyy-MM-dd")" /></label>
+        <div class="row2">
+            <label>с <input type="time" name="from" value="09:00" /></label>
+            <label>до <input type="time" name="to" value="12:00" /></label>
+        </div>
+        <button class="btn wide">Проверить</button>
+    </form>
+    <div id="busy" aria-live="polite"></div>
+</aside>
+</div>

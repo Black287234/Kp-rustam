@@ -1,0 +1,20 @@
+@model (TripRequest Trip, IReadOnlyList<TransportOrders.Web.Dispatch.CarOption> Options)
+@{ var fits = Model.Options.Where(o => o.Fits).ToList(); }
+<h3>Назначить автомобиль</h3>
+<p class="small muted">@Model.Trip.Period, пассажиров: @Model.Trip.Passengers</p>
+@if (fits.Count == 0)
+{
+    <p class="flash bad">Свободных подходящих автомобилей на это время нет.</p>
+}
+<form method="post" action="/Trips/AssignCar/@Model.Trip.Id" class="choice">
+    @Html.AntiForgeryToken()
+    @foreach (var o in Model.Options)
+    {
+        <label class="opt @(o.Fits ? "" : "off")">
+            <input type="radio" name="carId" value="@o.Car.Id" disabled="@(!o.Fits)" checked="@(o.Fits && o.Car.Id == fits[0].Car.Id)" />
+            <span class="plate">@o.Car.Plate</span> @o.Car.Title, мест @o.Car.PassengerSeats
+            @if (!o.Fits) { <small>— @o.Obstacle</small> }
+        </label>
+    }
+    @if (fits.Count > 0) { <button class="btn wide">Назначить</button> }
+</form>

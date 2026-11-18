@@ -1,26 +1,69 @@
-@model TripRequest
-@{ ViewData["Title"] = Model.Number; var log = (IReadOnlyList<TripLogEntry>)ViewData["log"]!; }
+@model TripCardPage
+@{ var t = Model.Trip; ViewData["Title"] = t.Number; }
 <p><a asp-action="Index">← к заявкам</a></p>
 <div class="head">
-    <h1>Заявка @Model.Number <span class="status @Model.Status.Css()">@Model.Status.Text()</span></h1>
-    @if (Model.Status == TripStatus.New)
+    <h1>Заявка @t.Number <span class="status @t.Status.Css()">@t.Status.Text()</span></h1>
+    @if (t.Status == TripStatus.New)
     {
-        <a class="btn light" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a>
+        <a class="btn light" asp-action="Edit" asp-route-id="@t.Id">Изменить</a>
     }
 </div>
+<div class="split">
+<div>
 <dl class="facts">
-    <dt>Заявитель</dt><dd>@Model.RequesterName, @Model.RequesterDepartment</dd>
-    <dt>Дата и время</dt><dd>@Model.StartsAt.ToString("dd.MM.yyyy"), @Model.StartsAt.ToString("HH:mm")–@Model.EndsAt.ToString("HH:mm")</dd>
-    <dt>Маршрут</dt><dd>@Model.Route</dd>
-    <dt>Цель поездки</dt><dd>@Model.Purpose</dd>
-    <dt>Пассажиров</dt><dd>@Model.Passengers</dd>
-    <dt>Автомобиль</dt><dd>@(Model.CarPlate is null ? "не назначен" : $"{Model.CarPlate}, {Model.CarTitle}")</dd>
-    <dt>Создана</dt><dd>@Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")</dd>
+    <dt>Заявитель</dt><dd>@t.RequesterName, @t.RequesterDepartment</dd>
+    <dt>Дата и время</dt><dd>@t.Period</dd>
+    <dt>Откуда</dt><dd>@t.Origin</dd>
+    <dt>Куда</dt><dd>@t.Destination</dd>
+    <dt>Цель поездки</dt><dd>@t.Purpose</dd>
+    <dt>Пассажиров</dt><dd>@t.Passengers</dd>
+    <dt>Автомобиль</dt><dd>@if (t.CarPlate is null) { <span class="muted">не назначен</span> } else { <a href="/Cars/Card/@t.CarId"><span class="plate">@t.CarPlate</span></a> @t.CarTitle }</dd>
+    @if (t.Resolution is not null) { <dt>Причина</dt><dd>@t.Resolution</dd> }
+    <dt>Подана</dt><dd>@t.CreatedAt.ToString("dd.MM.yyyy HH:mm")</dd>
 </dl>
 <h2>Журнал заявки</h2>
 <ol class="log">
-    @foreach (var e in log)
+    @foreach (var e in Model.Log)
     {
         <li><time>@e.LoggedAt.ToString("dd.MM.yyyy HH:mm")</time> <span class="status @e.Status.Css()">@e.Status.Text()</span> @e.Message</li>
     }
 </ol>
+</div>
+<aside class="panel">
+    <h2>Действия диспетчера</h2>
+    @if (Model.Actions.Count == 0)
+    {
+        <p class="muted">Заявка закрыта, действий нет.</p>
+    }
+    @if (Model.Can(TripAction.AssignCar))
+    {
+        <div id="options" hx-get="/Trips/Options/@t.Id" hx-trigger="load" hx-swap="innerHTML">
+            <p class="muted">Подбираю автомобили…</p>
+            <noscript><a href="/Trips/Options/@t.Id">Показать автомобили</a></noscript>
+        </div>
+    }
+    @if (Model.Can(TripAction.Depart))
+    {
+        <form method="post" asp-action="Depart" asp-route-id="@t.Id"><button class="btn wide">Отметить выезд</button></form>
+    }
+    @if (Model.Can(TripAction.Complete))
+    {
+        <form method="post" asp-action="Complete" asp-route-id="@t.Id"><button class="btn wide">Завершить поездку</button></form>
+    }
+    @if (Model.Can(TripAction.RemoveCar))
+    {
+        <form method="post" asp-action="RemoveCar" asp-route-id="@t.Id"><button class="btn light wide">Снять автомобиль</button></form>
+    }
+    @if (Model.Can(TripAction.Reject) || Model.Can(TripAction.Cancel))
+    {
+        <form method="post" class="closing">
+            <label>Причина отклонения или отмены <input name="reason" maxlength="200" placeholder="не короче 5 символов" /></label>
+            <div class="pair">
+                @if (Model.Can(TripAction.Reject)) { <button class="btn danger" formaction="/Trips/Reject/@t.Id">Отклонить</button> }
+                @if (Model.Can(TripAction.Cancel)) { <button class="btn light" formaction="/Trips/Cancel/@t.Id">Отменить заявку</button> }
+            </div>
+            @Html.AntiForgeryToken()
+        </form>
+    }
+</aside>
+</div>

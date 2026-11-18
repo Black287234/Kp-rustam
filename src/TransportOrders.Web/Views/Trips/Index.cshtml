@@ -1,23 +1,30 @@
-@model IReadOnlyList<TripRequest>
-@{ ViewData["Title"] = "Заявки"; }
+@model TripListPage
+@{
+    ViewData["Title"] = "Заявки";
+    var f = Model.Filter;
+    var cars = (IReadOnlyList<Car>)ViewData["cars"]!;
+}
 <div class="head">
     <h1>Заявки на поездки</h1>
     <a class="btn" asp-action="Create">Новая заявка</a>
 </div>
-<table class="grid">
-    <thead><tr><th>Номер</th><th>Когда</th><th>Маршрут</th><th>Заявитель</th><th class="num">Пасс.</th><th>Автомобиль</th><th>Статус</th></tr></thead>
-    <tbody>
-    @foreach (var t in Model)
-    {
-        <tr>
-            <td><a asp-action="Card" asp-route-id="@t.Id">@t.Number</a></td>
-            <td class="nowrap">@t.StartsAt.ToString("dd.MM.yyyy")<br /><small>@t.StartsAt.ToString("HH:mm")–@t.EndsAt.ToString("HH:mm")</small></td>
-            <td>@t.Destination<br /><small class="muted">@t.Purpose</small></td>
-            <td>@t.RequesterName</td>
-            <td class="num">@t.Passengers</td>
-            <td>@if (t.CarPlate is not null) { <span class="plate">@t.CarPlate</span> } else { <span class="muted">—</span> }</td>
-            <td><span class="status @t.Status.Css()">@t.Status.Text()</span></td>
-        </tr>
-    }
-    </tbody>
-</table>
+<form method="get" class="filters" hx-get="/Trips" hx-target="#trip-rows" hx-push-url="true"
+      hx-trigger="change, input changed delay:400ms from:input[type=search]">
+    <input type="search" name="Text" value="@f.Text" placeholder="Маршрут, цель или заявитель" aria-label="Поиск" />
+    <select name="Status" aria-label="Статус">
+        <option value="">Все статусы</option>
+        @foreach (var s in Enum.GetValues<TripStatus>()) { <option value="@s" selected="@(f.Status == s)">@s.Text()</option> }
+    </select>
+    <label class="inline">с <input type="date" name="DayFrom" value="@f.DayFrom?.ToString("yyyy-MM-dd")" /></label>
+    <label class="inline">по <input type="date" name="DayTo" value="@f.DayTo?.ToString("yyyy-MM-dd")" /></label>
+    <select name="CarId" aria-label="Автомобиль">
+        <option value="">Любой автомобиль</option>
+        @foreach (var c in cars) { <option value="@c.Id" selected="@(f.CarId == c.Id)">@c.Plate</option> }
+    </select>
+    <label class="inline"><input type="checkbox" name="OpenOnly" value="true" checked="@f.OpenOnly" /> только незакрытые</label>
+    <noscript><button class="btn light" type="submit">Показать</button></noscript>
+    <a class="reset" href="/Trips">сбросить</a>
+</form>
+<div id="trip-rows">
+    <partial name="_Rows" model="Model.Trips" />
+</div>

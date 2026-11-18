@@ -26,6 +26,7 @@
             @foreach (var s in Enum.GetValues<CarState>()) { <option value="@s" selected="@(Model.State == s)">@s.Text()</option> }
         </select>
     </label>
+    <span asp-validation-for="State" class="err"></span>
     <p class="hint">Автомобили не удаляются: выведенный из автопарка автомобиль получает состояние «списан» и остаётся в истории заявок.</p>
     <button class="btn" type="submit">Сохранить</button>
 </form>
