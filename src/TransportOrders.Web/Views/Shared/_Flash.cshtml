@@ -1,0 +1,8 @@
+@if (TempData["done"] is string done)
+{
+    <div class="flash ok" role="status">@done</div>
+}
+@if (TempData["refused"] is string refused)
+{
+    <div class="flash bad" role="alert">@refused</div>
+}

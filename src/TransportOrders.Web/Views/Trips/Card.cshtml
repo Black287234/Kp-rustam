@@ -1,0 +1,26 @@
+@model TripRequest
+@{ ViewData["Title"] = Model.Number; var log = (IReadOnlyList<TripLogEntry>)ViewData["log"]!; }
+<p><a asp-action="Index">← к заявкам</a></p>
+<div class="head">
+    <h1>Заявка @Model.Number <span class="status @Model.Status.Css()">@Model.Status.Text()</span></h1>
+    @if (Model.Status == TripStatus.New)
+    {
+        <a class="btn light" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a>
+    }
+</div>
+<dl class="facts">
+    <dt>Заявитель</dt><dd>@Model.RequesterName, @Model.RequesterDepartment</dd>
+    <dt>Дата и время</dt><dd>@Model.StartsAt.ToString("dd.MM.yyyy"), @Model.StartsAt.ToString("HH:mm")–@Model.EndsAt.ToString("HH:mm")</dd>
+    <dt>Маршрут</dt><dd>@Model.Route</dd>
+    <dt>Цель поездки</dt><dd>@Model.Purpose</dd>
+    <dt>Пассажиров</dt><dd>@Model.Passengers</dd>
+    <dt>Автомобиль</dt><dd>@(Model.CarPlate is null ? "не назначен" : $"{Model.CarPlate}, {Model.CarTitle}")</dd>
+    <dt>Создана</dt><dd>@Model.CreatedAt.ToString("dd.MM.yyyy HH:mm")</dd>
+</dl>
+<h2>Журнал заявки</h2>
+<ol class="log">
+    @foreach (var e in log)
+    {
+        <li><time>@e.LoggedAt.ToString("dd.MM.yyyy HH:mm")</time> <span class="status @e.Status.Css()">@e.Status.Text()</span> @e.Message</li>
+    }
+</ol>

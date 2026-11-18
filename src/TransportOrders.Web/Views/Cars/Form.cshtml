@@ -1,0 +1,31 @@
+@model CarForm
+@{ var isNew = Model.Id == 0; ViewData["Title"] = isNew ? "Новый автомобиль" : "Изменение автомобиля"; }
+<p><a asp-action="@(isNew ? "Index" : "Card")" asp-route-id="@(isNew ? null : Model.Id)">← назад</a></p>
+<h1>@ViewData["Title"]</h1>
+<form method="post" class="form" novalidate>
+    <div asp-validation-summary="ModelOnly" class="errors"></div>
+    <label>Госномер <input asp-for="Plate" placeholder="А123ВС 186" autocomplete="off" /></label>
+    <span asp-validation-for="Plate" class="err"></span>
+    <div class="row2">
+        <label>Марка <input asp-for="Make" /></label>
+        <label>Модель <input asp-for="Model" /></label>
+    </div>
+    <span asp-validation-for="Make" class="err"></span><span asp-validation-for="Model" class="err"></span>
+    <div class="row3">
+        <label>Тип
+            <select asp-for="Kind">
+                @foreach (var k in Enum.GetValues<CarKind>()) { <option value="@k" selected="@(Model.Kind == k)">@k.Text()</option> }
+            </select>
+        </label>
+        <label>Пассажирских мест <input asp-for="PassengerSeats" type="number" min="1" max="30" /></label>
+        <label>Год выпуска <input asp-for="ReleaseYear" type="number" /></label>
+    </div>
+    <span asp-validation-for="PassengerSeats" class="err"></span><span asp-validation-for="ReleaseYear" class="err"></span>
+    <label>Состояние
+        <select asp-for="State">
+            @foreach (var s in Enum.GetValues<CarState>()) { <option value="@s" selected="@(Model.State == s)">@s.Text()</option> }
+        </select>
+    </label>
+    <p class="hint">Автомобили не удаляются: выведенный из автопарка автомобиль получает состояние «списан» и остаётся в истории заявок.</p>
+    <button class="btn" type="submit">Сохранить</button>
+</form>

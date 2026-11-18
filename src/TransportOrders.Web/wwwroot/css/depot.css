@@ -32,7 +32,7 @@ h2 { font-size: 18px; margin: 24px 0 8px; color: var(--pine-dark); }
 .grid td { border-bottom: 1px solid var(--line); padding: 8px; }
 .grid .num { text-align: right; }
 .grid tr.faded td { color: var(--muted); }
-.plate { font-family: Consolas, monospace; font-weight: 600; letter-spacing: .5px; }
+.plate { font-family: Consolas, monospace; font-weight: 600; letter-spacing: .5px; white-space: nowrap; }
 .tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; background: #e7efe9; color: var(--pine-dark); }
 .tag-inrepair { background: #f7e6d3; color: var(--amber); }
 .tag-decommissioned { background: #eceae4; color: var(--muted); }
@@ -41,3 +41,44 @@ h2 { font-size: 18px; margin: 24px 0 8px; color: var(--pine-dark); }
 .facts dd { margin: 0; }
 .intro p { max-width: 720px; line-height: 1.5; }
 .notice { padding: 24px 0; }
+.head { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-bottom: 8px; }
+.btn.light { background: #fff; color: var(--pine); border: 1px solid var(--pine); }
+.btn.light:hover { background: #e7efe9; }
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 16px; }
+.filters input, .filters select { padding: 7px 10px; border: 1px solid var(--line); border-radius: 4px; font: inherit; background: #fff; }
+.filters input[type=search] { min-width: 280px; }
+.empty { padding: 16px; background: var(--sand); color: var(--muted); }
+.nowrap { white-space: nowrap; }
+.grid small { font-size: 12px; }
+.tiles { display: flex; gap: 16px; margin-top: 20px; flex-wrap: wrap; }
+.tile { flex: 1 1 200px; padding: 16px; border: 1px solid var(--line); border-left: 4px solid var(--pine); text-decoration: none; color: var(--ink); background: #fff; }
+.tile b { display: block; font-size: 17px; color: var(--pine-dark); }
+.tile span { color: var(--muted); font-size: 13px; }
+.form { display: flex; flex-direction: column; gap: 6px; max-width: 640px; }
+.form label { display: flex; flex-direction: column; gap: 4px; font-size: 13px; color: var(--muted); margin-top: 6px; }
+.form label.check { flex-direction: row; align-items: center; gap: 8px; color: var(--ink); }
+.form label.short { max-width: 220px; }
+.form input, .form select, .form textarea { padding: 8px 10px; border: 1px solid var(--line); border-radius: 4px; font: inherit; color: var(--ink); background: #fff; }
+.form input.input-validation-error, .form select.input-validation-error, .form textarea.input-validation-error { border-color: var(--red); background: #fdf3f2; }
+.form .btn { align-self: flex-start; margin-top: 12px; }
+.row2, .row3 { display: grid; gap: 12px; }
+.row2 { grid-template-columns: 1fr 1fr; }
+.row3 { grid-template-columns: 1fr 1fr 1fr; }
+.err { color: var(--red); font-size: 13px; }
+.errors ul { margin: 0; padding: 10px 14px 10px 30px; background: #fdf3f2; border: 1px solid #e8b9b4; color: var(--red); }
+.errors.validation-summary-valid { display: none; }
+.hint { font-size: 13px; color: var(--muted); margin: 8px 0 0; }
+.flash { padding: 10px 14px; margin-bottom: 16px; border-radius: 4px; }
+.flash.ok { background: #e3f0e6; border: 1px solid #b6d4bd; color: var(--pine-dark); }
+.flash.bad { background: #fdf3f2; border: 1px solid #e8b9b4; color: var(--red); }
+.status { white-space: nowrap; display: inline-block; padding: 2px 9px; border-radius: 3px; font-size: 12px; font-weight: 600; vertical-align: middle; }
+.st-new { background: #e4ecf7; color: #2c4f80; }
+.st-carassigned { background: #fbefd9; color: #8a5a12; }
+.st-onroute { background: #e3f0e6; color: var(--pine); }
+.st-done { background: #ebe8e0; color: #555; }
+.st-rejected { background: #f8e1df; color: var(--red); }
+.st-cancelled { background: #eeeeee; color: #777; text-decoration: line-through; }
+.log { list-style: none; padding: 0; margin: 0; border-left: 2px solid var(--line); }
+.log li { padding: 6px 0 6px 14px; position: relative; }
+.log li::before { content: ""; position: absolute; left: -6px; top: 12px; width: 10px; height: 10px; border-radius: 50%; background: var(--pine); }
+.log time { color: var(--muted); font-size: 13px; margin-right: 6px; }

@@ -18,4 +18,18 @@ public static class Labels
         CarState.Decommissioned => "списан",
         _ => state.ToString()
     };
+
+    public static string Text(this TripStatus status) => status switch
+    {
+        TripStatus.New => "новая",
+        TripStatus.CarAssigned => "автомобиль назначен",
+        TripStatus.OnRoute => "в пути",
+        TripStatus.Done => "выполнена",
+        TripStatus.Rejected => "отклонена",
+        TripStatus.Cancelled => "отменена",
+        _ => status.ToString()
+    };
+
+    /// <summary>Класс оформления метки статуса.</summary>
+    public static string Css(this TripStatus status) => "st-" + status.ToString().ToLowerInvariant();
 }

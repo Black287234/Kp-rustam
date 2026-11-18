@@ -1,0 +1,32 @@
+@model IReadOnlyList<Employee>
+@{ ViewData["Title"] = "Сотрудники"; }
+<div class="head">
+    <h1>Сотрудники</h1>
+    <a class="btn" asp-action="Create">Добавить сотрудника</a>
+</div>
+<form method="get" class="filters">
+    <input type="search" name="q" value="@ViewData["q"]" placeholder="ФИО, табельный номер или подразделение" aria-label="Поиск" />
+    <button class="btn light" type="submit">Найти</button>
+</form>
+@if (Model.Count == 0)
+{
+    <p class="empty">Сотрудники не найдены.</p>
+}
+else
+{
+<table class="grid">
+    <thead><tr><th>Таб. №</th><th>ФИО</th><th>Подразделение</th><th>Должность</th><th>Телефон</th></tr></thead>
+    <tbody>
+    @foreach (var e in Model)
+    {
+        <tr class="@(e.IsActive ? "" : "faded")">
+            <td>@e.PersonnelNo</td>
+            <td><a asp-action="Card" asp-route-id="@e.Id">@e.FullName</a>@if (!e.IsActive) { <span class="tag tag-decommissioned">уволен</span> }</td>
+            <td>@e.Department</td>
+            <td>@e.Position</td>
+            <td>@e.Phone</td>
+        </tr>
+    }
+    </tbody>
+</table>
+}

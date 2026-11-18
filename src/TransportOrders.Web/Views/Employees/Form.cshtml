@@ -1,0 +1,21 @@
+@model EmployeeForm
+@{ var isNew = Model.Id == 0; ViewData["Title"] = isNew ? "Новый сотрудник" : "Изменение сотрудника"; }
+<p><a asp-action="@(isNew ? "Index" : "Card")" asp-route-id="@(isNew ? null : Model.Id)">← назад</a></p>
+<h1>@ViewData["Title"]</h1>
+<form method="post" class="form" novalidate>
+    <div asp-validation-summary="ModelOnly" class="errors"></div>
+    <label>Табельный номер <input asp-for="PersonnelNo" maxlength="5" inputmode="numeric" /></label>
+    <span asp-validation-for="PersonnelNo" class="err"></span>
+    <label>ФИО <input asp-for="FullName" /></label>
+    <span asp-validation-for="FullName" class="err"></span>
+    <div class="row2">
+        <label>Подразделение <input asp-for="Department" /></label>
+        <label>Должность <input asp-for="Position" /></label>
+    </div>
+    <span asp-validation-for="Department" class="err"></span><span asp-validation-for="Position" class="err"></span>
+    <label>Телефон <input asp-for="Phone" placeholder="+7 (3462) 00-00-00" /></label>
+    <span asp-validation-for="Phone" class="err"></span>
+    <label class="check"><input asp-for="IsActive" /> Работает в организации</label>
+    <p class="hint">Сотрудники не удаляются: при увольнении снимите отметку — заявки уволенного сотрудника сохранятся.</p>
+    <button class="btn" type="submit">Сохранить</button>
+</form>

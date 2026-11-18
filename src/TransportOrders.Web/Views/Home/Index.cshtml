@@ -3,6 +3,9 @@
     <h1>Заявки на служебный транспорт</h1>
     <p>Модуль предназначен для диспетчера автопарка: сотрудники подают заявки на поездку с указанием даты,
        времени, маршрута и цели, а диспетчер назначает свободный автомобиль и ведёт заявку до завершения.</p>
-    <p class="muted">Этап 1: справочник автомобилей, данные хранятся в памяти.</p>
-    <a class="btn" asp-controller="Cars" asp-action="Index">Открыть автопарк</a>
+    <div class="tiles">
+        <a class="tile" asp-controller="Trips" asp-action="Index"><b>Заявки</b><span>список, создание, журнал</span></a>
+        <a class="tile" asp-controller="Cars" asp-action="Index"><b>Автомобили</b><span>автопарк и состояние машин</span></a>
+        <a class="tile" asp-controller="Employees" asp-action="Index"><b>Сотрудники</b><span>заявители</span></a>
+    </div>
 </section>

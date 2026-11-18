@@ -1,0 +1,14 @@
+@model Employee
+@{ ViewData["Title"] = Model.FullName; }
+<p><a asp-action="Index">← к сотрудникам</a></p>
+<div class="head">
+    <h1>@Model.FullName</h1>
+    <a class="btn light" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a>
+</div>
+<dl class="facts">
+    <dt>Табельный номер</dt><dd>@Model.PersonnelNo</dd>
+    <dt>Подразделение</dt><dd>@Model.Department</dd>
+    <dt>Должность</dt><dd>@Model.Position</dd>
+    <dt>Телефон</dt><dd>@(Model.Phone ?? "—")</dd>
+    <dt>Статус</dt><dd>@(Model.IsActive ? "работает" : "уволен")</dd>
+</dl>

@@ -9,5 +9,14 @@
     <Company>ЧПОУ «СКП»</Company>
     <Authors>Лыхин Рустам Владимирович</Authors>
   </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.1.89" />
+    <PackageReference Include="Microsoft.Data.Sqlite" Version="10.0.15" />
+  </ItemGroup>
+
+  <!-- SQL-скрипты миграций встраиваются в сборку и выполняются при запуске -->
+  <ItemGroup>
+    <EmbeddedResource Include="Data/Migrations/*.sql" />
+  </ItemGroup>
 
 </Project>

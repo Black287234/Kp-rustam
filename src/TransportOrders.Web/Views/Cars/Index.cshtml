@@ -1,7 +1,26 @@
 @model IReadOnlyList<Car>
-@{ ViewData["Title"] = "Автомобили"; }
-<h1>Автопарк</h1>
-<p class="muted">Автомобилей в справочнике: @Model.Count, в строю: @Model.Count(c => c.State == CarState.Operational).</p>
+@{ ViewData["Title"] = "Автомобили"; var state = ViewData["state"] as CarState?; }
+<div class="head">
+    <h1>Автопарк</h1>
+    <a class="btn" asp-action="Create">Добавить автомобиль</a>
+</div>
+<form method="get" class="filters">
+    <input type="search" name="q" value="@ViewData["q"]" placeholder="Госномер, марка или модель" aria-label="Поиск" />
+    <select name="state" aria-label="Состояние">
+        <option value="">Любое состояние</option>
+        @foreach (var s in Enum.GetValues<CarState>())
+        {
+            <option value="@s" selected="@(state == s)">@s.Text()</option>
+        }
+    </select>
+    <button class="btn light" type="submit">Показать</button>
+</form>
+@if (Model.Count == 0)
+{
+    <p class="empty">Автомобили не найдены.</p>
+}
+else
+{
 <table class="grid">
     <thead>
     <tr><th>Госномер</th><th>Марка и модель</th><th>Тип</th><th class="num">Мест</th><th class="num">Год</th><th>Состояние</th></tr>
@@ -20,3 +39,4 @@
     }
     </tbody>
 </table>
+}

@@ -1,7 +1,10 @@
 @model Car
 @{ ViewData["Title"] = Model.Plate; }
 <p><a asp-action="Index">← к автопарку</a></p>
-<h1><span class="plate">@Model.Plate</span> @Model.Title</h1>
+<div class="head">
+    <h1><span class="plate">@Model.Plate</span> @Model.Title</h1>
+    <a class="btn light" asp-action="Edit" asp-route-id="@Model.Id">Изменить</a>
+</div>
 <dl class="facts">
     <dt>Тип</dt><dd>@Model.Kind.Text()</dd>
     <dt>Пассажирских мест</dt><dd>@Model.PassengerSeats</dd>

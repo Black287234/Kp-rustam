@@ -7,10 +7,10 @@ namespace TransportOrders.Web.Controllers.Api;
 /// <summary>Чтение справочника автомобилей в формате JSON.</summary>
 [ApiController]
 [Route("api/cars")]
-public sealed class CarsApiController(ICarSource cars) : ControllerBase
+public sealed class CarsApiController(CarStore cars) : ControllerBase
 {
     [HttpGet]
-    public IEnumerable<object> List() => cars.All().Select(Describe);
+    public IEnumerable<object> List() => cars.List().Select(Describe);
 
     [HttpGet("{id:int}")]
     public IActionResult One(int id)

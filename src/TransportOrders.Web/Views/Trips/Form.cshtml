@@ -1,0 +1,30 @@
+@model TripForm
+@{
+    var isNew = Model.Id == 0;
+    ViewData["Title"] = isNew ? "Новая заявка" : $"Изменение заявки ЗТ-{Model.Id:0000}";
+    var requesters = (List<SelectListItem>)ViewData["requesters"]!;
+}
+<p><a asp-action="@(isNew ? "Index" : "Card")" asp-route-id="@(isNew ? null : Model.Id)">← назад</a></p>
+<h1>@ViewData["Title"]</h1>
+<form method="post" class="form" novalidate>
+    <div asp-validation-summary="ModelOnly" class="errors"></div>
+    <label>Заявитель
+        <select asp-for="RequesterId" asp-items="requesters"><option value="0">— выберите сотрудника —</option></select>
+    </label>
+    <span asp-validation-for="RequesterId" class="err"></span>
+    <div class="row3">
+        <label>Дата поездки <input asp-for="Day" type="date" /></label>
+        <label>Выезд <input asp-for="From" type="time" /></label>
+        <label>Возвращение <input asp-for="To" type="time" /></label>
+    </div>
+    <span asp-validation-for="Day" class="err"></span><span asp-validation-for="From" class="err"></span><span asp-validation-for="To" class="err"></span>
+    <label>Откуда <input asp-for="Origin" /></label>
+    <span asp-validation-for="Origin" class="err"></span>
+    <label>Куда <input asp-for="Destination" placeholder="Адрес или название организации" /></label>
+    <span asp-validation-for="Destination" class="err"></span>
+    <label>Цель поездки <textarea asp-for="Purpose" rows="2"></textarea></label>
+    <span asp-validation-for="Purpose" class="err"></span>
+    <label class="short">Пассажиров (с заявителем) <input asp-for="Passengers" type="number" min="1" max="30" /></label>
+    <span asp-validation-for="Passengers" class="err"></span>
+    <button class="btn" type="submit">@(isNew ? "Подать заявку" : "Сохранить")</button>
+</form>
