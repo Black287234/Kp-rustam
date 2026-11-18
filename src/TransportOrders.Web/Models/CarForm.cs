@@ -10,8 +10,7 @@ public sealed class CarForm
 
     [Display(Name = "Госномер")]
     [Required(ErrorMessage = "Укажите госномер")]
-    [RegularExpression(@"^\s*[АВЕКМНОРСТУХавекмнорстух]\d{3}[АВЕКМНОРСТУХавекмнорстух]{2}\s?\d{2,3}\s*$",
-        ErrorMessage = "Госномер в формате А123ВС 186: буквы А, В, Е, К, М, Н, О, Р, С, Т, У, Х и код региона")]
+    [PlateFormat]
     public string Plate { get; set; } = "";
 
     [Display(Name = "Марка")]
@@ -38,15 +37,8 @@ public sealed class CarForm
     [Display(Name = "Состояние")]
     public CarState State { get; set; } = CarState.Operational;
 
-    /// <summary>Госномер в едином виде: заглавные буквы и один пробел перед регионом.</summary>
-    public string NormalizedPlate
-    {
-        get
-        {
-            var p = Plate.Replace(" ", "").ToUpperInvariant();
-            return p.Length > 6 ? $"{p[..6]} {p[6..]}" : p;
-        }
-    }
+    /// <summary>Госномер в едином виде: заглавные кириллические буквы и один пробел перед регионом.</summary>
+    public string NormalizedPlate => PlateNumber.Normalize(Plate);
 
     public static CarForm From(Car c) => new()
     {

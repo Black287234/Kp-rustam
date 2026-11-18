@@ -87,6 +87,11 @@ public sealed class TripsController(
     {
         var trip = trips.Find(id);
         if (trip is null) return NotFound();
+        if (trip.Status != TripStatus.New)
+        {
+            TempData["refused"] = $"Заявка в статусе «{trip.Status.Text()}»: изменяются только новые заявки";
+            return RedirectToAction(nameof(Card), new { id });
+        }
         FillRequesters();
         return View("Form", TripForm.Of(trip));
     }

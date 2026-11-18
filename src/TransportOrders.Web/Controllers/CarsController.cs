@@ -7,7 +7,7 @@ using TransportOrders.Web.Models;
 namespace TransportOrders.Web.Controllers;
 
 /// <summary>Справочник автомобилей: список, карточка, добавление и изменение.</summary>
-public sealed class CarsController(CarStore cars, CarAvailability availability, TimeProvider clock) : Controller
+public sealed class CarsController(CarStore cars, CarAvailability availability, FleetGuard guard, TimeProvider clock) : Controller
 {
     public IActionResult Index(string? q, CarState? state)
     {
@@ -64,12 +64,9 @@ public sealed class CarsController(CarStore cars, CarAvailability availability, 
         form.Id = id;
         if (ModelState.IsValid && cars.PlateTaken(form.NormalizedPlate, id))
             ModelState.AddModelError(nameof(form.Plate), $"Автомобиль с госномером {form.NormalizedPlate} уже есть в справочнике");
-        // Нельзя отправить в ремонт или списать автомобиль, за которым закреплены предстоящие поездки
-        if (ModelState.IsValid && form.State != CarState.Operational
-            && availability.Commitments(id, clock.GetLocalNow().DateTime) is { Count: > 0 } held)
-            ModelState.AddModelError(nameof(form.State),
-                $"За автомобилем закреплены поездки: {string.Join(", ", held.Select(t => $"{t.Number} ({t.StartsAt:dd.MM HH:mm})"))}. " +
-                "Сначала снимите автомобиль с этих заявок или назначьте другой");
+        // Автомобиль с закреплёнными поездками нельзя вывести из строя или «ужать» по числу мест
+        if (ModelState.IsValid)
+            ModelState.Absorb(guard.CheckChange(form.ToCar()));
         if (!ModelState.IsValid) return View("Form", form);
 
         cars.Update(form.ToCar());

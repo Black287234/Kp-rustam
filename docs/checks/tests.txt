@@ -1,0 +1,359 @@
+Результат команды: dotnet test --output Detailed
+Дата прогона: 18.11.2026
+
+Running tests from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Закреплённые за автомобилем поездки: только предстоящие назначенные и в пути (185ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed График дня показывает поездки по автомобилям (175ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Свободные автомобили на промежуток: без занятых, ремонтных и маловместительных (31ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed У неподходящего автомобиля указана причина (45ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Подходящие автомобили идут первыми, начиная с наименьшего запаса мест (48ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Поездка встык после другой допускается (32ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Автомобиль на ремонте и списанный не назначаются (26ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Отменённая заявка освобождает автомобиль (46ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Автомобиль на ремонте и списанный не назначаются (21ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Назначенной заявке нельзя назначить автомобиль повторно (29ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Мест в автомобиле должно хватить на всех пассажиров; ровно столько же — можно (35ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Выезд — не раньше чем за час до начала и не после окончания (44ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Свободный автомобиль назначается, заявка переходит в «автомобиль назначен» (45ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Завершить можно только поездку в пути (46ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Прошедшей поездке автомобиль не назначается (22ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Занятый автомобиль не назначается, в отказе — номер мешающей заявки (40ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Снятие автомобиля возвращает заявку в «новая» и освобождает автомобиль (44ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Изменение уже изменённой заявки не проходит молча (31ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed База не даёт сохранить двойное назначение даже в обход проверки (41ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Отклонение и отмена требуют причины не короче 5 символов (32ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Нельзя отправить в ремонт автомобиль с закреплённой поездкой (29ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Запрещённые переходы статусов (8ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Разрешённые переходы статусов (5ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Разрешённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Разрешённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Запрещённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Запрещённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Запрещённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Запрещённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Запрещённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Запрещённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Запрещённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Нельзя уменьшить число мест ниже числа пассажиров закреплённой поездки (44ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed У закрытой заявки нет действий (1ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed У закрытой заявки нет действий (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed У закрытой заявки нет действий (7ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Разрешённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Разрешённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Запрещённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Разрешённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Разрешённые переходы статусов (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Автомобиль без поездок можно менять свободно (40ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Длительность промежутка (8ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Автомобиль занимают только назначенные заявки и заявки в пути (14ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Поездки встык и разнесённые не пересекаются (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Поездки встык и разнесённые не пересекаются (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Поездки встык и разнесённые не пересекаются (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Частичное пересечение промежутков (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Промежуток с концом не позже начала не создаётся (5ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Частичное пересечение промежутков (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Частичное пересечение промежутков (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Частичное пересечение промежутков (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Частичное пересечение промежутков (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Промежуток с концом не позже начала не создаётся (12ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Госномер приводится к единому виду (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Неверные госномера отклоняются (1ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Неверные госномера отклоняются (2ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Неверные госномера отклоняются (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Неверные госномера отклоняются (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Неверные госномера отклоняются (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Госномер приводится к единому виду (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Госномер приводится к единому виду (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Госномер приводится к единому виду (0ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Поездка на прошедшее время отклоняется (12ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Латинская и кириллическая записи одного номера считаются повтором (17ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Несуществующий заявитель — отказ (19ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Пункт назначения не может совпадать с пунктом отправления (14ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Уволенный сотрудник не подаёт заявки (21ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Число пассажиров от 1 до 30 (18ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Число пассажиров от 1 до 30 (14ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Время возвращения не позже выезда — отказ (16ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Новую заявку можно изменить, назначенную — нельзя (37ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Число пассажиров от 1 до 30 (17ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Правильная заявка регистрируется со статусом «новая» и записью в журнале (25ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Граница длительности: ровно 12 часов можно, больше — нельзя (16ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Число пассажиров от 1 до 30 (19ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Время возвращения не позже выезда — отказ (13ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Поиск автомобиля по-русски не зависит от регистра (17ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Поиск автомобиля по-русски не зависит от регистра (9ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Поиск автомобиля по-русски не зависит от регистра (11ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Поиск сотрудника по части ФИО в нижнем регистре (12ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed «Только незакрытые» скрывает выполненные, отклонённые и отменённые (24ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed Отбор заявок по статусу, автомобилю и датам (38ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+passed API: занятость автомобиля и ответ 404 в JSON (437ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+  Standard output
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0001_schema.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0002_sample_data.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0003_dispatch.sql
+    info: Microsoft.Hosting.Lifetime[0]
+          Application started. Press Ctrl+C to shut down.
+    info: Microsoft.Hosting.Lifetime[0]
+          Hosting environment: Development
+    info: Microsoft.Hosting.Lifetime[0]
+          Content root path: src/TransportOrders.Web
+    info: Microsoft.Hosting.Lifetime[0]
+          Application is shutting down...
+  Error output
+passed Форма изменения назначенной заявки не открывается — переход в карточку (448ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+  Standard output
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0001_schema.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0002_sample_data.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0003_dispatch.sql
+    info: Microsoft.Hosting.Lifetime[0]
+          Application started. Press Ctrl+C to shut down.
+    info: Microsoft.Hosting.Lifetime[0]
+          Hosting environment: Development
+    info: Microsoft.Hosting.Lifetime[0]
+          Content root path: src/TransportOrders.Web
+    info: Microsoft.Hosting.Lifetime[0]
+          Application is shutting down...
+  Error output
+passed Основные страницы открываются (460ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+  Standard output
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0001_schema.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0002_sample_data.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0003_dispatch.sql
+    info: Microsoft.Hosting.Lifetime[0]
+          Application started. Press Ctrl+C to shut down.
+    info: Microsoft.Hosting.Lifetime[0]
+          Hosting environment: Development
+    info: Microsoft.Hosting.Lifetime[0]
+          Content root path: src/TransportOrders.Web
+    info: Microsoft.Hosting.Lifetime[0]
+          Application is shutting down...
+  Error output
+passed Основные страницы открываются (93ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+  Standard output
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0001_schema.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0002_sample_data.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0003_dispatch.sql
+    info: Microsoft.Hosting.Lifetime[0]
+          Application started. Press Ctrl+C to shut down.
+    info: Microsoft.Hosting.Lifetime[0]
+          Hosting environment: Development
+    info: Microsoft.Hosting.Lifetime[0]
+          Content root path: src/TransportOrders.Web
+    info: Microsoft.Hosting.Lifetime[0]
+          Application is shutting down...
+  Error output
+passed Сообщения о нечисловом вводе выводятся по-русски (588ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+  Standard output
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0001_schema.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0002_sample_data.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0003_dispatch.sql
+    info: Microsoft.Hosting.Lifetime[0]
+          Application started. Press Ctrl+C to shut down.
+    info: Microsoft.Hosting.Lifetime[0]
+          Hosting environment: Development
+    info: Microsoft.Hosting.Lifetime[0]
+          Content root path: src/TransportOrders.Web
+    info: Microsoft.Hosting.Lifetime[0]
+          Application is shutting down...
+  Error output
+passed Основные страницы открываются (114ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+  Standard output
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0001_schema.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0002_sample_data.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0003_dispatch.sql
+    info: Microsoft.Hosting.Lifetime[0]
+          Application started. Press Ctrl+C to shut down.
+    info: Microsoft.Hosting.Lifetime[0]
+          Hosting environment: Development
+    info: Microsoft.Hosting.Lifetime[0]
+          Content root path: src/TransportOrders.Web
+    info: Microsoft.Hosting.Lifetime[0]
+          Application is shutting down...
+  Error output
+passed Основные страницы открываются (110ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+  Standard output
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0001_schema.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0002_sample_data.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0003_dispatch.sql
+    info: Microsoft.Hosting.Lifetime[0]
+          Application started. Press Ctrl+C to shut down.
+    info: Microsoft.Hosting.Lifetime[0]
+          Hosting environment: Development
+    info: Microsoft.Hosting.Lifetime[0]
+          Content root path: src/TransportOrders.Web
+    info: Microsoft.Hosting.Lifetime[0]
+          Application is shutting down...
+  Error output
+passed Несуществующая запись — страница «Запись не найдена» с кодом 404 (81ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+  Standard output
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0001_schema.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0002_sample_data.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0003_dispatch.sql
+    info: Microsoft.Hosting.Lifetime[0]
+          Application started. Press Ctrl+C to shut down.
+    info: Microsoft.Hosting.Lifetime[0]
+          Hosting environment: Development
+    info: Microsoft.Hosting.Lifetime[0]
+          Content root path: src/TransportOrders.Web
+    info: Microsoft.Hosting.Lifetime[0]
+          Application is shutting down...
+  Error output
+passed Основные страницы открываются (101ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+  Standard output
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0001_schema.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0002_sample_data.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0003_dispatch.sql
+    info: Microsoft.Hosting.Lifetime[0]
+          Application started. Press Ctrl+C to shut down.
+    info: Microsoft.Hosting.Lifetime[0]
+          Hosting environment: Development
+    info: Microsoft.Hosting.Lifetime[0]
+          Content root path: src/TransportOrders.Web
+    info: Microsoft.Hosting.Lifetime[0]
+          Application is shutting down...
+  Error output
+passed Основные страницы открываются (86ms)
+  from tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64)
+  Standard output
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0001_schema.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0002_sample_data.sql
+    info: TransportOrders.Web.Data.SchemaMigrator[0]
+          Применён скрипт базы данных 0003_dispatch.sql
+    info: Microsoft.Hosting.Lifetime[0]
+          Application started. Press Ctrl+C to shut down.
+    info: Microsoft.Hosting.Lifetime[0]
+          Hosting environment: Development
+    info: Microsoft.Hosting.Lifetime[0]
+          Content root path: src/TransportOrders.Web
+    info: Microsoft.Hosting.Lifetime[0]
+          Application is shutting down...
+  Error output
+tests/TransportOrders.Tests/bin/Debug/net10.0/TransportOrders.Tests.dll (net10.0|x64) passed (1s 524ms)
+  In process file artifacts produced:
+    - TestResults/TransportOrders.Tests-linux-net10.0-report.html
+Test run summary: Passed!
+  total: 93
+  failed: 0
+  succeeded: 93
+  skipped: 0
+  duration: 1s 857ms

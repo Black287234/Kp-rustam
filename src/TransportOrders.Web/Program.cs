@@ -1,12 +1,13 @@
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using Microsoft.Extensions.WebEncoders;
+using TransportOrders.Web.Controllers;
 using TransportOrders.Web.Data;
 using TransportOrders.Web.Dispatch;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllersWithViews(o => BindingTexts.Apply(o.ModelBindingMessageProvider));
 // Кириллица выводится в разметку как есть, без замены на числовые ссылки
 builder.Services.Configure<WebEncoderOptions>(o =>
     o.TextEncoderSettings = new TextEncoderSettings(UnicodeRanges.BasicLatin, UnicodeRanges.Latin1Supplement, UnicodeRanges.LatinExtendedA, UnicodeRanges.Cyrillic, UnicodeRanges.GeneralPunctuation, UnicodeRanges.Arrows));
@@ -27,6 +28,7 @@ builder.Services.AddScoped<TripStore>();
 builder.Services.AddScoped<RequestDesk>();
 builder.Services.AddScoped<CarAvailability>();
 builder.Services.AddScoped<DispatchDesk>();
+builder.Services.AddScoped<FleetGuard>();
 
 var app = builder.Build();
 
