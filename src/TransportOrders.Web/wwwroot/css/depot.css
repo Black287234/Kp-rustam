@@ -1,0 +1,43 @@
+/* Оформление модуля «Служебный транспорт»: хвойно-зелёный и песочный */
+:root {
+    --pine: #1f4d3a;
+    --pine-dark: #163628;
+    --sand: #f6f3ea;
+    --paper: #fffdf8;
+    --ink: #22251f;
+    --muted: #6d6a5f;
+    --line: #ddd6c4;
+    --amber: #b8641f;
+    --red: #a3322a;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Segoe UI", Tahoma, sans-serif; background: var(--sand); color: var(--ink); font-size: 15px; }
+a { color: var(--pine); }
+.topbar { display: flex; align-items: center; gap: 32px; padding: 10px 28px; background: var(--pine); color: #fff; }
+.brand { display: flex; align-items: center; gap: 10px; color: #fff; text-decoration: none; font-weight: 600; }
+.brand small { display: block; font-weight: 400; font-size: 12px; opacity: .8; }
+.brand-mark { display: inline-grid; place-items: center; width: 36px; height: 36px; border: 2px solid #e9c46a; border-radius: 6px; color: #e9c46a; font-weight: 700; }
+.mainnav { display: flex; gap: 4px; }
+.mainnav a { color: #e8efe9; text-decoration: none; padding: 8px 12px; border-radius: 4px; }
+.mainnav a:hover { background: var(--pine-dark); }
+.page { max-width: 1120px; margin: 24px auto; padding: 24px 28px; background: var(--paper); border: 1px solid var(--line); }
+.foot { text-align: center; color: var(--muted); font-size: 12px; padding: 12px 0 24px; }
+h1 { font-size: 24px; margin: 0 0 12px; color: var(--pine-dark); }
+h2 { font-size: 18px; margin: 24px 0 8px; color: var(--pine-dark); }
+.muted { color: var(--muted); }
+.btn { display: inline-block; padding: 8px 16px; background: var(--pine); color: #fff; border: 0; border-radius: 4px; text-decoration: none; cursor: pointer; font: inherit; }
+.btn:hover { background: var(--pine-dark); }
+.grid { width: 100%; border-collapse: collapse; }
+.grid th { text-align: left; font-weight: 600; font-size: 13px; color: var(--muted); border-bottom: 2px solid var(--pine); padding: 8px; }
+.grid td { border-bottom: 1px solid var(--line); padding: 8px; }
+.grid .num { text-align: right; }
+.grid tr.faded td { color: var(--muted); }
+.plate { font-family: Consolas, monospace; font-weight: 600; letter-spacing: .5px; }
+.tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 12px; background: #e7efe9; color: var(--pine-dark); }
+.tag-inrepair { background: #f7e6d3; color: var(--amber); }
+.tag-decommissioned { background: #eceae4; color: var(--muted); }
+.facts { display: grid; grid-template-columns: 220px 1fr; gap: 6px 16px; }
+.facts dt { color: var(--muted); }
+.facts dd { margin: 0; }
+.intro p { max-width: 720px; line-height: 1.5; }
+.notice { padding: 24px 0; }

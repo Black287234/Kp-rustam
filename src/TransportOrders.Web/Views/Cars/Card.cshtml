@@ -1,0 +1,10 @@
+@model Car
+@{ ViewData["Title"] = Model.Plate; }
+<p><a asp-action="Index">← к автопарку</a></p>
+<h1><span class="plate">@Model.Plate</span> @Model.Title</h1>
+<dl class="facts">
+    <dt>Тип</dt><dd>@Model.Kind.Text()</dd>
+    <dt>Пассажирских мест</dt><dd>@Model.PassengerSeats</dd>
+    <dt>Год выпуска</dt><dd>@Model.ReleaseYear</dd>
+    <dt>Состояние</dt><dd><span class="tag tag-@Model.State.ToString().ToLowerInvariant()">@Model.State.Text()</span></dd>
+</dl>

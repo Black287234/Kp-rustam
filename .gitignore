@@ -1,0 +1,14 @@
+# --- .NET ---
+bin/
+obj/
+*.user
+.vs/
+.vscode/
+.idea/
+
+# --- рабочая база SQLite (создаётся при первом запуске) ---
+src/TransportOrders.Web/App_Data/
+
+# --- результаты тестов ---
+TestResults/
+*.trx

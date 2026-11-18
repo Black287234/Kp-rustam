@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] — служебный транспорт</title>
+    <link rel="stylesheet" href="~/css/depot.css" asp-append-version="true" />
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" href="/">
+        <span class="brand-mark">СТ</span>
+        <span>Служебный транспорт<small>заявки и диспетчеризация</small></span>
+    </a>
+    <nav class="mainnav">
+        <a asp-controller="Cars" asp-action="Index">Автомобили</a>
+    </nav>
+</header>
+<main class="page">
+    @RenderBody()
+</main>
+<footer class="foot">ЧПОУ «СКП» · курсовая работа · тема 17</footer>
+</body>
+</html>

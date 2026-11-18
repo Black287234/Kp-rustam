@@ -1,0 +1,22 @@
+@model IReadOnlyList<Car>
+@{ ViewData["Title"] = "Автомобили"; }
+<h1>Автопарк</h1>
+<p class="muted">Автомобилей в справочнике: @Model.Count, в строю: @Model.Count(c => c.State == CarState.Operational).</p>
+<table class="grid">
+    <thead>
+    <tr><th>Госномер</th><th>Марка и модель</th><th>Тип</th><th class="num">Мест</th><th class="num">Год</th><th>Состояние</th></tr>
+    </thead>
+    <tbody>
+    @foreach (var car in Model)
+    {
+        <tr class="@(car.State == CarState.Decommissioned ? "faded" : "")">
+            <td><a asp-action="Card" asp-route-id="@car.Id" class="plate">@car.Plate</a></td>
+            <td>@car.Title</td>
+            <td>@car.Kind.Text()</td>
+            <td class="num">@car.PassengerSeats</td>
+            <td class="num">@car.ReleaseYear</td>
+            <td><span class="tag tag-@car.State.ToString().ToLowerInvariant()">@car.State.Text()</span></td>
+        </tr>
+    }
+    </tbody>
+</table>

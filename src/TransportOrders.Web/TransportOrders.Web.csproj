@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <!-- Модуль заявок на служебный транспорт: веб-приложение ASP.NET Core MVC -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>TransportOrders.Web</RootNamespace>
+    <Company>ЧПОУ «СКП»</Company>
+    <Authors>Лыхин Рустам Владимирович</Authors>
+  </PropertyGroup>
+
+</Project>
